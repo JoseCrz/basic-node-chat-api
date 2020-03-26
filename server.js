@@ -12,6 +12,10 @@ app.use(router)
 
 // SECTION App routes
 router.get('/', (request, response) => {
+    console.log(request.headers) //see and send headers
+    response.header({
+        "custom-header": "our own value :)"
+    })
     response.send('Hello world!')
 })
 
