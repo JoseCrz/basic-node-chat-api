@@ -36,6 +36,7 @@ router.post('/message', (req, res) => {
     }
 })
 
+app.use('/landing', express.static('public'))
 
 // SECTION Port
 console.log('Listening on port 3000')
