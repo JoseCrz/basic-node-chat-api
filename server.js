@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const router = express.Router()
 
+const response = require('./network/response')
+
 
 // SECTION App configuration
 const app = express()
@@ -11,22 +13,27 @@ app.use(router)
 
 
 // SECTION App routes
-router.get('/', (request, response) => {
-    console.log(request.headers) //see and send headers
+router.get('/', (req, res) => {
+    console.log(req.headers) //see and send headers
     response.header({
         "custom-header": "our own value :)"
     })
-    response.send('Hello world!')
+    res.send('Hello world!')
 })
 
-router.get('/message', (request, response) => {
-    response.send('List of messages...')
+router.get('/message', (req, res) => {
+    response.success(req, res, 'A list of messages', 201)
 })
 
-router.post('/message', (request, response) => {
-    console.log(request.body)
-    console.log(request.query)
-    response.send(`Message "${request.body.message}" received!`)
+router.post('/message', (req, res) => {
+    console.log(req.body)
+    console.log(req.query)
+
+    if(req.query.error === 'true') {
+        response.error(req, res, 'Something went wrong', 401)
+    } else {
+        response.success(req, res, 'Message received', 201)
+    }
 })
 
 
