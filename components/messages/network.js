@@ -4,7 +4,13 @@ const controller = require('./controller')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-    response.success(req, res, 'A list of messages', 201)
+    controller.getAllMessages()
+        .then(messageList => {
+            response.success(req, res, messageList, 201)
+        })
+        .catch(error => {
+            response.error(req, res, 'Unexpected Error', 500)
+        })
 })
 
 router.post('/', (req, res) => {
