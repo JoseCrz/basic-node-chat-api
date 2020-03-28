@@ -26,7 +26,18 @@ const getUsers = userId => {
     })
 }
 
+const deleteUser = userId => {
+    return new Promise(async (resolve, reject) => {
+        if (!userId) {
+            reject('Missing ID')
+        }
+        await storage.deleteUser(userId)
+        resolve()
+    })
+}
+
 module.exports = {
     addUser,
-    getUsers
+    getUsers,
+    deleteUser
 }

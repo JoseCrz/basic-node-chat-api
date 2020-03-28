@@ -16,7 +16,13 @@ const getUsers = async userId => {
     return users
 }
 
+const deleteUser = async userId => {
+    await Model.deleteOne({_id : userId})
+    return true
+}
+
 module.exports = {
     addUser,
-    getUsers
+    getUsers,
+    deleteUser
 }

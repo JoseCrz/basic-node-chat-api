@@ -30,4 +30,16 @@ router.post('/', (req, res) => {
     })
 })
 
+router.delete('/', (req, res) => {
+    const userId = req.query.id || null
+    controller.deleteUser(userId)
+    .then(() => {
+        response.success(req, res, 'User deleted', 200)
+    })
+    .catch(error => {
+        console.log(error)
+        response.error(req, res, 'Internal error', 400)
+    })
+})
+
 module.exports = router
