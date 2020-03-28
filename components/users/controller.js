@@ -20,6 +20,13 @@ const addUser = (name, lastname, age, email) => {
     })
 }
 
+const getUsers = userId => {
+    return new Promise((resolve, reject) => {
+        resolve(storage.getUsers(userId))
+    })
+}
+
 module.exports = {
-    addUser
+    addUser,
+    getUsers
 }
