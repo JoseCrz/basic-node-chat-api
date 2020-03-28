@@ -20,7 +20,7 @@ const addMessage = message => {
 
 const getAllMessages = async desiredUser => {
     let filter = {}
-    
+
     if(desiredUser !== null) {
         filter = { user: desiredUser }
     }
@@ -36,8 +36,14 @@ const updateMessage = async (id, message) => {
     return updatedMessage
 }
 
+const deleteMessage = async id => {
+    await Model.deleteOne({_id: id})
+    return true
+}
+
 module.exports = {
     addMessage,
     getAllMessages,
-    updateMessage
+    updateMessage,
+    deleteMessage
 }

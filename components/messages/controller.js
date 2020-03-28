@@ -36,8 +36,20 @@ const updateMessage = (id, message) => {
     })
 }
 
+const deleteMessage = id => {
+    return new Promise( async (resolve, reject) => {
+        if (!id) {
+            reject('Id not provided')
+        }
+
+        await storage.deleteMessage(id)
+        resolve()
+    })
+}
+
 module.exports = {
     addMessage,
     getAllMessages,
-    updateMessage
+    updateMessage,
+    deleteMessage
 }

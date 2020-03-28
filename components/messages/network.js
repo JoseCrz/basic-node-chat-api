@@ -25,6 +25,17 @@ router.post('/', (req, res) => {
         })
 })
 
+router.delete('/:id', (req, res) => {
+    controller.deleteMessage(req.params.id)
+    .then(() => {
+        response.success(req, res, `Message ${req.params.id} deleted`, 201)
+    })
+    .catch(error => {
+        console.log(error)
+        response.error(req, res, 'Internal Error', 500)
+    })
+})
+
 router.patch('/:id', (req, res) => {
     console.log(req.params.id)
 
