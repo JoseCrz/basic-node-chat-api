@@ -21,8 +21,19 @@ const deleteUser = async userId => {
     return true
 }
 
+const updateUser = async (userId, name, lastname, age, email) => {
+    const user = await Model.findOne({_id: userId})
+    user.name = name
+    user.lastname = lastname
+    user.age = age
+    user.email = email
+    const updatedUser = await user.save()
+    return updatedUser
+}
+
 module.exports = {
     addUser,
     getUsers,
-    deleteUser
+    deleteUser,
+    updateUser
 }

@@ -36,8 +36,19 @@ const deleteUser = userId => {
     })
 }
 
+const updateUser = (userId, name, lastname, age, email) => {
+    return new Promise( async (resolve, reject) => {
+        if (!userId) {
+            reject('Missing ID')
+        }
+        const updatedUser = await storage.updateUser(userId, name, lastname, age, email)
+        resolve(updatedUser)
+    })
+}
+
 module.exports = {
     addUser,
     getUsers,
-    deleteUser
+    deleteUser,
+    updateUser
 }
