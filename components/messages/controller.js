@@ -20,9 +20,9 @@ const addMessage = (user, message) => {
     })
 }
 
-const getAllMessages = () => {
+const getAllMessages = desiredUser => {
     return new Promise((resolve, reject) => {
-        resolve(storage.getAllMessages())
+        resolve(storage.getAllMessages(desiredUser))
     })
 }
 
