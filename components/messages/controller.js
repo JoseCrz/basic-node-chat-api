@@ -26,7 +26,18 @@ const getAllMessages = () => {
     })
 }
 
+const updateMessage = (id, message) => {
+    return new Promise(async (resolve, reject) => {
+        if (!id || !message) {
+            reject('Missing data!')
+        }
+        const result = await storage.updateMessage(id, message)
+        resolve(result)
+    })
+}
+
 module.exports = {
     addMessage,
-    getAllMessages
+    getAllMessages,
+    updateMessage
 }
