@@ -5,7 +5,27 @@ const createChat = chat => {
     myChat.save()
 }
 
+const getChats = userId => {
+    return new Promise((resolve, reject) => {
+        
+        let filter = {}
+        if (userId) {
+            filter = {users: userId}
+        }
+    
+        Model.find(filter)
+            .populate('users')
+            .exec((error, populated) => {
+                if (error) {
+                    reject(error)
+                }
+                resolve(populated)
+            })
+    })
+}
+
 
 module.exports = {
-    createChat
+    createChat,
+    getChats
 }

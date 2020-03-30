@@ -16,4 +16,16 @@ router.post('/', (req, res) => {
         })
 })
 
+router.get('/:userId', (req, res) => {
+    const userId = req.params.userId
+    controller.getChats(userId)
+        .then(users => {
+            response.success(req, res, users, 200)
+        })
+        .catch(error => {
+            console.log(error)
+            response.error(req, res, 'Internal Error', 500)
+        })
+})
+
 module.exports = router
