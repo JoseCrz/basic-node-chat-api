@@ -5,8 +5,10 @@ const Schema = mongoose.Schema
 const chatSchema = new Schema({
     users: [
         {
-            type: Schema.ObjectId,
-            ref: 'user'
+            userId: {
+                type: Schema.ObjectId,
+                ref: 'user'
+            }
         }
     ]
 })
