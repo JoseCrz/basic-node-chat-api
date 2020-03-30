@@ -5,12 +5,12 @@ const addMessage = message => {
     myMessage.save()
 }
 
-const getAllMessages = async desiredUser => {
+const getAllMessages = async desiredChat => {
     return new Promise ((resolve, reject) => {
         let filter = {}
     
-        if(desiredUser !== null) {
-            filter = { user: desiredUser }
+        if(desiredChat !== null) {
+            filter = { chatId: desiredChat }
         }
     
         Model.find(filter)

@@ -1,15 +1,16 @@
 const storage = require('./storage')
 
-const addMessage = (user, message) => {
+const addMessage = (chatId, userId, message) => {
     return new Promise((resolve, reject) => {
         
-        if (!user || !message) {
-            console.log('message or user missing')
+        if (!chatId || !userId || !message) {
+            console.log('chatId, userId or message missing')
             reject('wrong data')
         }
         
         const fullMessage = {
-            user: user,
+            chatId: chatId,
+            userId: userId,
             message: message,
             date: new Date(),
         }
@@ -20,9 +21,9 @@ const addMessage = (user, message) => {
     })
 }
 
-const getAllMessages = desiredUser => {
+const getAllMessages = desiredChat => {
     return new Promise((resolve, reject) => {
-        resolve(storage.getAllMessages(desiredUser))
+        resolve(storage.getAllMessages(desiredChat))
     })
 }
 
