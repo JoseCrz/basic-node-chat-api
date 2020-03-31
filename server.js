@@ -1,4 +1,6 @@
 const express = require('express')
+const app = express()
+const server = require('http').Server(app)
 const bodyParser = require('body-parser')
 
 const routes = require('./network/routes')
@@ -7,7 +9,6 @@ const db = require('./db')
 db.connect()
 
 // SECTION App configuration
-const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
@@ -17,5 +18,6 @@ routes(app)
 app.use('/app', express.static('public'))
 
 // SECTION Port
-console.log('Listening on port 3000')
-app.listen(3000)
+server.listen(3000, () => {
+    console.log('Listening on port 3000')
+})

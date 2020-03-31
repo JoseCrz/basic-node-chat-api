@@ -24,7 +24,7 @@ const upload = multer({
 
 router.get('/', (req, res) => {
     const desiredChat = req.query.chatId || null
-    console.log(desiredChat)
+    // console.log(desiredChat)
     controller.getAllMessages(desiredChat)
         .then(messageList => {
             response.success(req, res, messageList, 201)
