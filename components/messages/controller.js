@@ -1,17 +1,24 @@
 const storage = require('./storage')
 
-const addMessage = (chatId, userId, message) => {
+const addMessage = (chatId, userId, message, file) => {
     return new Promise((resolve, reject) => {
         
         if (!chatId || !userId || !message) {
             console.log('chatId, userId or message missing')
             reject('wrong data')
         }
+
+        let fileUrl = ''
+        if (file) {
+            fileUrl = `http://localhost:3000/app/files/${file.filename}`
+        }
         
+        console.log('fileurl',fileUrl)
         const fullMessage = {
             chatId: chatId,
             userId: userId,
             message: message,
+            file: fileUrl,
             date: new Date(),
         }
         

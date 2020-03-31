@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 // Load routes to the app
 routes(app)
 
-app.use('/landing', express.static('public'))
+app.use('/app', express.static('public'))
 
 // SECTION Port
 console.log('Listening on port 3000')
