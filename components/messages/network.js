@@ -4,8 +4,21 @@ const response = require('../../network/response')
 const controller = require('./controller')
 const router = express.Router()
 
+const multerStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/')
+    },
+    filename: (req, file, cb) => {
+        const splitedName = file.originalname.split('.')
+        // console.log(splitedName)
+        const extension = splitedName[splitedName.length - 1]
+        // console.log(extension)
+        cb(null, `${Date.now()}.${extension}`)
+    }
+})
+
 const upload = multer({
-    dest: 'uploads/'
+    storage: multerStorage
 })
 
 router.get('/', (req, res) => {
