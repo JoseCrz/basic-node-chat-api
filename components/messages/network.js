@@ -1,7 +1,12 @@
 const express = require('express')
+const multer = require('multer')
 const response = require('../../network/response')
 const controller = require('./controller')
 const router = express.Router()
+
+const upload = multer({
+    dest: 'uploads/'
+})
 
 router.get('/', (req, res) => {
     const desiredChat = req.query.chatId || null
@@ -16,7 +21,7 @@ router.get('/', (req, res) => {
         })
 })
 
-router.post('/', (req, res) => {
+router.post('/', upload.single('file') ,(req, res) => {
     controller.addMessage(req.body.chatId, req.body.userId, req.body.message)
         .then(fullMessage => {
             response.success(req, res, fullMessage, 201)
